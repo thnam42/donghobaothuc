@@ -1,45 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
-    android:background="@drawable/alarm"
-    tools:context=".MainActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select \nTime"
-        android:id="@+id/selectTime"
-        android:textSize="40sp"
-        android:layout_marginTop="280dp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textAlignment="center"/>
-    <RelativeLayout
+    android:padding="16dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/alarmRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/setAlarm"
-            android:text="Set \nAlarm"
-            android:textSize="20sp"
-            android:padding="8dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="180dp"/>
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/cancelAlarm"
-            android:text="Cancel \nAlarm"
-            android:textSize="20sp"
-            android:padding="8dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="180dp"
-            android:layout_marginEnd="40dp"/>
-    </RelativeLayout>
-</LinearLayout>
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnSetAlarm"/>
+
+    <ImageButton
+        android:id="@+id/btnSetAlarm"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_alarm"
+        android:background="@drawable/round_button"
+        android:contentDescription="Add Alarm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/btnCancelAlarm"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/ic_cancel"
+        android:background="@drawable/round_button"
+        android:contentDescription="Cancel Alarm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

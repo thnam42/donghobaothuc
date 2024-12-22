@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RadioGroup
+        android:id="@+id/repeatTypeGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="8dp">
+
+        <RadioButton
+            android:id="@+id/noRepeatRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Không đặt lại"/>
+
+        <RadioButton
+            android:id="@+id/weeklyRepeatRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đặt lại theo ngày trong tuần"/>
+
+        <RadioButton
+            android:id="@+id/specificDatesRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đặt lại theo ngày cụ thể"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/weeklyRepeatLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Repeat on"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="7">
+
+            <CheckBox android:id="@+id/sunday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CN"/>
+
+            <CheckBox android:id="@+id/monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="T2"/>
+
+            <CheckBox android:id="@+id/tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="T3"/>
+
+            <CheckBox android:id="@+id/wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="T4"/>
+
+            <CheckBox android:id="@+id/thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="T5"/>
+
+            <CheckBox android:id="@+id/friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="T6"/>
+
+            <CheckBox android:id="@+id/saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="T7"/>
+        </GridLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/specificDatesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chọn ngày"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/addDateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thêm ngày"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/selectedDatesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"/>
+    </LinearLayout>
+
+
+</LinearLayout>
