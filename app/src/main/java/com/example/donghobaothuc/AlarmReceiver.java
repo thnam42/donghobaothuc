@@ -9,6 +9,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
+import java.io.IOException;
 import java.util.Calendar;
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -28,9 +31,19 @@ public class AlarmReceiver extends BroadcastReceiver {
         long alarmId = intent.getLongExtra("ALARM_ID", -1);
 
         // Play alarm sound
-//        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-//        ringtone = RingtoneManager.getRingtone(context, alarmSound);
-//        ringtone.play();
+        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        try {
+            mediaPlayer.setDataSource(context, alarmSound);
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AlarmApplication.setMediaPlayer(mediaPlayer);
 //
 //        SharedPreferences preferences = context.getSharedPreferences("alarm_prefs", Context.MODE_PRIVATE);
 //        SharedPreferences.Editor editor = preferences.edit();
@@ -67,8 +80,11 @@ public class AlarmReceiver extends BroadcastReceiver {
     }
 
     public void stopAlarm(Context context) {
-        if (ringtone != null && ringtone.isPlaying()) {
-            ringtone.stop();
+        MediaPlayer mediaPlayer = AlarmApplication.getMediaPlayer();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            AlarmApplication.setMediaPlayer(null);
         }
 
 //        SharedPreferences preferences = context.getSharedPreferences("alarm_prefs", Context.MODE_PRIVATE);
